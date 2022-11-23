@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Elster BK-G4T</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div class="topnav">
+      <h1>Elster BK-G4T Service page ver: 4_3</h1>
+    </div>
+    <div class="content">
+      <h2>GasCounter Adjust</h2>
+      <p class="state"><span id="state">%STATE%</span></p>
+      <p><button id="Plus" class="button">+</button></p>
+      <p><button id="Minus" class="button">-</button></p>
+      <p><button id="ClrCSV" class="button">Clear CSV</button></p>
+      <p><button id="ClrCSVDay" class="button">Clear m3/day</button></p>
+      <p><button id="Clear" class="button">Clear WiFi Config</button></p>
+      <p><button id="SetCounter" class="button">Set meter Value</button></p>
+      <p><span class="ELSTER">MeterValue</span></p>
+      <input class="input" type="number" id ="elster" name="elster" value="0"><br>
+    <script>
+      var gateway = `ws://${window.location.hostname}/ws`;
+      var websocket;
+      window.addEventListener('load', onLoad);
+      function initWebSocket() {
+        console.log('Trying to open a WebSocket connection...');
+        websocket           = new WebSocket(gateway);
+        websocket.onopen    = onOpen;
+        websocket.onclose   = onClose;
+        websocket.onmessage = onMessage; // <-- add this line
+      }
+      function onOpen(event) {
+        console.log('Connection opened');
+        notifyClients();
+      }
+      function onClose(event) {
+        console.log('Connection closed');
+        setTimeout(initWebSocket, 2000);
+      }
+      function onMessage(event) {
+        var state;
+        state = event.data;
+        document.getElementById('state').innerHTML = state;
+      }
+      function onLoad(event) {
+        initWebSocket();
+        initButton();
+      }
+      function initButton() {
+        document.getElementById('Plus').addEventListener('click', Plus);
+        document.getElementById('Minus').addEventListener('click', Minus);
+        document.getElementById('Clear').addEventListener('click', Clear);
+        document.getElementById('ClrCSV').addEventListener('click', ClrCSV);
+        document.getElementById('ClrCSVDay').addEventListener('click', ClrCSVDay);
+        document.getElementById('SetCounter').addEventListener('click', SetCounter);
+      }
+      function Plus(){
+        websocket.send('+');
+      }
+      function Minus(){
+        websocket.send('-');
+      }
+      function Clear(){
+        websocket.send('Clear');
+      }
+      function ClrCSV(){
+        websocket.send('ClrCSV');
+      }
+      function ClrCSVDay(){
+        websocket.send('ClrCSVDay');
+      }
+      function SetCounter() {
+	console.log("I x");
+        var x = document.getElementById("elster").value;
+ //       document.getElementById("demo").innerHTML = x;
+	console.log(x);
+	websocket.send(x);
+    }
+
+    </script>
+  </body>
+</html>

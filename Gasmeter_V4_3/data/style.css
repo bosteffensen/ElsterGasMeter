@@ -1,0 +1,83 @@
+html {
+  font-family: New Times Roman;
+  text-align: center;
+}
+h1 {
+  font-size: 1.8rem;
+  color: white;
+}
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #612b78;
+}
+.topnav {
+  overflow: hidden;
+  background-color: #612b78;
+}
+body {
+  margin: 0;
+}
+.content {
+  padding: 30px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.button {
+  padding: 10px 50px;
+  width: 250px;
+  font-size: 18px;
+  text-align: center;
+  outline: none;
+  color: #fff;
+  background-color:#0066cc;  // V2_2b: Mørkeblå
+  border: none;
+  border-radius: 5px;
+  user-select: none;         // V2_2b: webkit data fjernet, er Non-Standard
+}
+.button:active {
+  background-color:#fa0f0f ;
+  transform: translateY(2px);
+}
+.state {
+  font-size: 1.5rem;
+  color:#120707;
+  font-weight: bold;
+}
+.label {
+  color: white;
+  padding: 8px;
+  font-family: Arial;
+}
+.ELSTER {
+  padding: 10px 80px;
+  width: 250px;
+  font-size: 18px;
+  text-align: center;
+  outline-color: black;
+  outline-style: solid;
+  outline-color: black;
+  outline-width: 2px;
+
+  color: #fff;
+  background-color:#00cfff;  // V2_2b: Mørkeblå
+  border: 2px;
+  border-radius: 5px;
+  user-select: none;         // V2_2b: webkit data fjernet, er Non-Standard
+}
+.input {
+ // padding: 10px 80px;
+  width: 235px;
+  font-size: 18px;
+  text-align: center;
+  outline-color: black;
+  outline-style: solid;
+  outline-color: black;
+  outline-width: 2px;
+
+  color: #0;
+  background-color:white;  // V2_2b: Mørkeblå
+  border: 2px;
+  border-radius: 5px;
+  user-select: none;         // V2_2b: webkit data fjernet, er Non-Standard
+}
